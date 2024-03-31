@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Analysis Report</title>
+    <style>
+        *{
+            font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+        }
+        table{
+            width: 100%
+        }
+        td{
+            padding-left: 20px;
+        }
+        th{
+            background-color: #ef3636; color: #ffffff;
+        }
+        
+    </style>
+</head>
+<body>
+    <% if (reportContents !== null) { %>
+        <div class=" mt-2 mx-3">
+          <h4 class="h2 " style="text-align: center;">File Scan Report for FireStickHacks Users</h4>
+          <hr />
+          <div class="my-3">
+            <p class="h5">Malware Detection:</p>
+            <p>File Name: <%= reportContents.name %></p>
+            
+            <div style="display: flex !important; justify-content: space-around !important;">
+              <div
+                   style="width: 100%; border-radius: 5px; background-color: #eceef4; border: 1px solid #dee2e6; text-align: center;">
+                <h3>Malicious Ratio</h3>
+                <hr />
+                             <%- reportContents.chart %>
+              </div>
+
+              <br/>
+              <div 
+              style="width: 100%; border-radius: 5px; background-color: #eceef4; border: 1px solid #dee2e6; text-align: center;">
+              <h3>Malicious Detected</h3>
+                <hr />
+                <br />
+                <h4><span style="color: #c52420;"><%= reportContents?.stats?.malicious %></span>/<%= reportContents?.total %></h4>
+                
+                <p>Reported: <%= reportContents?.stats?.malicious %> malicious out of <%= reportContents?.total %> & <%= reportContents?.stats?.suspicious %> suspicious out of <%= reportContents?.total %></p>
+              </div>
+            </div>
+            <br/>
+            <div class="my-5">
+              <table class="table table-hover table-light">
+                <thead>
+                  <tr>
+                    <th style="background-color: #ef3636; color: #ffffff;">Stats Parameters</th>
+                    <th style="background-color: #ef3636; color: #ffffff;">Values</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% Object.keys(reportContents.stats)?.forEach((e, i) => { %>
+                    <tr>
+                      <td style="font-weight: bold; text-transform: capitalize;"><%= e %></td>
+                      <td><%= reportContents.stats[e] %></td>
+                    </tr>
+                  <% }); %>
+                </tbody>
+              </table>
+              <% if (Object.keys(reportContents.stats).length < 1) { %>
+                <p class="h4 text-center">No Record</p>
+              <% } %>
+            </div>
+            
+          </div>
+         
+          <br/>
+          <div className="my-3">
+            <p className="h5">File Hashes</p>
+            <table className="table table-hover table-light">
+              <thead>
+                <tr>
+                  <th >
+                    Keys
+                  </th>
+                  <th >
+                    Values
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td >MD5</td>
+                  <td><%= reportContents.md5 %></td>
+                  
+                </tr>
+                <tr>
+                  <td >SHA1</td>
+                  <td><%= reportContents.sha1 %></td>
+                </tr>
+                <tr>
+                  <td >SHA256</td> <td><%= reportContents.sha256 %></td>
+                </tr>
+               
+              </tbody>
+            </table>
+            <ul>
+
+              <li>
+              SHA1: Secure Hash Algorithm 1
+
+              </li>
+              <li>
+              SHA256: Secure Hash Algorithm 256-bit
+
+              </li>
+              <li>
+              MD5: Message Digest Algorithm 5
+
+              </li>
+            </ul>
+          </div>
+          <br/>
+
+          <!-- Other sections omitted for brevity -->
+        </div>
+      <% } else { %>
+        <h3>No File Scanned</h3>
+      <% } %>
+      
+</body>
+</html>
