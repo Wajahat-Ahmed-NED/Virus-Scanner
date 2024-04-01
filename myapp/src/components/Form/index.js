@@ -75,8 +75,13 @@ export default function Form() {
     setReport(flag);
   };
   return (
-    <div className=" my-5 mx-3 d-flex justify-content-around">
-      <p className="h2 text-center">Find Vulnerabilites In Your File</p>
+    <div className=" my-5 mx-3 d-flex justify-content-around ">
+      <div className="my-5 px-5" style={{width:'50% '}}>
+      <p className="h1 text-center">Virus Scanner</p>
+      <p style={{fontWeight:'bold', textAlign:'justify'}}>Drag and drop suspicious files to detect malware and other breaches for free.</p>
+        <p style={{textAlign:'justify'}}>Scan any document, image, PDF, or other file types. Make sure your files are safe and free from viruses before you open them with Internxt's zero-knowledge Virus Scanner.</p>
+
+        </div>
       <div className="my-5">
         {errorFromApi.flag && (
           <Alert severity="error" className="mb-3 text-center mt-2">
