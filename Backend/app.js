@@ -63,15 +63,25 @@ let reportContent = {
 
 app.post("/generateReport", (req, res) => {
   try {
-    const { stats, name, md5, sha1, sha256, email, chart } = req.body;
-    if (!stats || !name || !md5 || !sha1 || !sha256 || !email || !chart) {
+    const { stats, name, md5, sha1, sha256, email, chart, fileName } = req.body;
+    if (
+      !stats ||
+      !name ||
+      !md5 ||
+      !sha1 ||
+      !sha256 ||
+      !email ||
+      !chart ||
+      !fileName
+    ) {
       return res.status(400).json({
         mBoolean: true,
         message: "Invalid Parameters",
-        values: [stats, name, md5, sha1, sha256, email, chart],
+        values: [stats, name, md5, sha1, sha256, email, chart, fileName],
       });
     }
 
+    // console.log(name)
     (reportContent.stats = stats),
       (reportContent.total = Object.values(stats).reduce(
         (acc, curr) => acc + curr,
@@ -90,7 +100,7 @@ app.post("/generateReport", (req, res) => {
         },
         (err, data) => {
           if (err) {
-            console.log("at 87 " + err);
+            // console.log("at 87 " + err);
             res.send(err);
           } else {
             let options = {
@@ -106,7 +116,7 @@ app.post("/generateReport", (req, res) => {
             };
             pdf
               .create(data, options)
-              .toFile("./FireStickHacks  Report.pdf", function (err, data) {
+              .toFile(`./${fileName}.pdf`, function (err, data) {
                 if (err) {
                   res.send(err);
                 } else {
@@ -150,6 +160,7 @@ app.post("/generateReport", (req, res) => {
         }
       );
   } catch (error) {
+    console.log(error.message);
     return res
       .status(403)
       .json({ mBoolean: true, message: "Invalid Parameters" });

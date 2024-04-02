@@ -1,3 +1,6 @@
 /node_modules
 backend-win.exe
 /build
+/backend-linux
+/backend-macos
+/backend-win.exe
