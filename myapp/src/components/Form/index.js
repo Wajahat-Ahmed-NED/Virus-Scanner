@@ -116,7 +116,7 @@ export default function Form() {
           <p style={{ textAlign: "justify" }}>
             Scan any document, image, PDF, or other file types. Make sure your
             files are safe and free from viruses before you open them with
-            Internxt's zero-knowledge Virus Scanner.
+            FireStick's zero-knowledge Virus Scanner.
           </p>
         </div>
         <div className="my-5" style={{ width: "50%" }}>
@@ -159,10 +159,10 @@ export default function Form() {
 
       {/* {report && <BasicModal state={report} setState={handleReport} />} */}
       {!loading && Object.keys(data).length > 0 && (
-        <>
+        <div style={{ visibility: "hidden" }}>
           <h5> &nbsp;Fetched Results for {name}</h5>
           <Stats />
-        </>
+        </div>
       )}
     </>
   );

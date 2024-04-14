@@ -173,7 +173,7 @@ const Image = ({ handleScan }) => {
             )}
             <div>
               <br />
-              {threat === 1 && <h3> Safe to Use or Not?</h3>}
+              {/* {threat === 1 && <h3> Safe to Use or Not?</h3>} */}
               <h3> Enter your email to get Full Report</h3>
               <br />
 

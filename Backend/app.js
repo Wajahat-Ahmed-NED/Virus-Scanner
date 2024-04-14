@@ -131,10 +131,10 @@ app.post("/generateReport", (req, res) => {
                     from: SMTP_MAIL,
                     to: reportContent?.email,
                     subject: "FireStickHacks - See The Full Scanned Report",
-                    html: "<b>Dear User,</b><br/>Thank you for using FireStickHacks File Scanner. Attached to this email you will find a detailed scan report in the PDF format.<br/> <a href='https://www.google.com' target='_blank' style='text-align:center'>Click Here For More Secret App</a>",
+                    html: "<b>Dear User,</b><br/>Thank you for using FireStickHacks File Scanner. Attached to this email you will find a detailed scan report in the PDF format.<br/><br/>To know if this file is safe to use on Firestick, please refer to this Table which shows the % of malicious content and the corresponding safety categories. Here is the link : https://firestickhacks.com/virus-scanner-table",
                     attachments: [
                       {
-                        path: data.filename,
+                        path: path.basename(data.filename),
                       },
                     ],
                   };
